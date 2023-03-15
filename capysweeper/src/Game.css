@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap');
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: pink;
+  /* border: 0.1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.cell.opened.light {
+  width: 40px;
+  height: 40px;
+  /* border: 0.1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #D4C284;
+}
+
+
+.cell.opened.dark {
+    width: 40px;
+    height: 40px;
+    /* border: 0.1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #B09F63; 
+  }
+
+
+
+
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.grid{
+  position: relative;
+  -webkit-text-stroke: 1px black;
+  font-size: 30px;
+  font-family: 'Concert One', cursive;
+}
+
+#boom {
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  /* border: 0.1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image:url(../crocodile.png);
+  background-size: 40px;
+  background-repeat: no-repeat;
+}
+
+
+.light{
+    background-color: #BADCAE;
+}
+
+.dark{
+    background-color: #89AA80;
+}
+
+
+.content1{
+    color: #D2F8E1;
+}
+
+.content2{
+    color: #E4C1F9;
+}
+
+.content3{
+    color: #F594C1;
+}
+
+
+.content4{
+    color: #EDE8B1;
+}
+
+.content5{
+    color: #A8DEF8;
+}
+
+
+.content6{
+    color: #F5988C;
+}
+
+.content7{
+    color: #C85C69;
+}
