@@ -1,0 +1,84 @@
+
+
+.home-cont {
+    height: 35rem;
+    width: 23rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start
+}
+
+.home-title {
+    width: 20rem;
+    height: 5rem;
+    margin-top: 1rem;
+}
+
+.titlePic {
+    width: 23rem;
+    height: 5rem;
+}
+
+.home-capy {
+    display: flex;
+    width: 23rem;
+    height: 11rem;
+    margin-top: 3rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.capy-home-pic {
+    width: 9rem;
+    height: 11rem;
+}
+
+.home-buttons {
+    margin-top: 2rem;
+    width: 23rem;
+    height: 11rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.button {
+    width: 15rem;
+    height: 3rem;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.56);
+    border: 1px solid #000000;
+    font-family: 'Concert One', cursive;
+    font-size: 1.3rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.link { text-decoration: none; }
+.visited { text-decoration: none; }
+.hover { text-decoration: none; }
+.active { text-decoration: none; }
+
+.home-side-buttons {
+    position: absolute;
+    width: 6rem;
+    margin-top: 10rem;
+    margin-left: -3.5rem;
+}
+
+.side-btn {
+    width: 6rem;
+    text-align: right;
+    padding-right: 1rem;
+    margin-top: 1rem;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}

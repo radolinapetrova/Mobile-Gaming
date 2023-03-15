@@ -1,15 +1,17 @@
-import logo from './logo.svg';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import './App.css';
-import Navigation from './pages/Navigation';
+import audioSrc from '../src/resources/audios/audio-file.mp3';
 import Levels from "./pages/Levels";
 import Settings from "./pages/Settings";
 import Leaderboard from "./pages/Leaderboard";
 import Home from "./pages/Home";
 import Game from "./pages/Game";
+import Win from './pages/Win';
+import Lose from './pages/Lose'
 
 function App() {
+
   return (
+    
     <div className="App">
       <BrowserRouter>
       <Routes>
@@ -18,6 +20,9 @@ function App() {
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="settings" element={<Settings />} />
           <Route path="levels" element={<Levels/>} />
+          <Route path="win" element={<Win />} />
+          <Route path="win" element={<Win />} />
+          <Route path="lose" element={<Lose />} />
           <Route />
       </Routes>
     </BrowserRouter>

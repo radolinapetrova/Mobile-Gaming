@@ -1,0 +1,46 @@
+.win-container {
+    width: 20rem;
+    height: 40rem;
+}
+
+.win-cont {
+    width: 20rem;
+    height: 15rem;
+    display: grid;
+    margin-top: 3rem;
+    align-items: center;
+    padding-bottom: 3rem;
+    background-color: rgba(217, 217, 217, 0.56);
+    border-radius: 30px;
+}
+
+.win-info {
+    text-align: center;
+    width: 20rem;
+    height: 2rem;
+    font-size: 2rem;
+}
+
+.win-next-level-btn {
+    margin-left: auto;
+    margin-right: auto;
+    width: 15rem;
+}
+
+.go-home-btn {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.win-capy-cont {
+    width: 20rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.win-capy {
+    width: 10rem;
+    height: 10rem;
+}
