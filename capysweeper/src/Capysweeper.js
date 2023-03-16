@@ -16,7 +16,7 @@ export default function Capysweeper() {
   const [lives, setLives] = useState(3);
   const [lostGame, setLostGame] = useState(false);
   const [wonGame, setWonGame] = useState(false);
-  const [openCells, setOpenCells] = useState(0);
+  const [openCells, setOpenCells] = useState(1);
 
   const [seconds, setSeconds] = useState(0)
 
@@ -43,7 +43,7 @@ export default function Capysweeper() {
     setGrid(Array.from({ length: gridSize }, () =>
       Array.from({ length: gridSize }, generateEmptyCell)
     ))
-    setOpenCells(0)
+    setOpenCells(1)
     setCurrentBombCount(0)
     setLives(3)
     setSeconds(0)
@@ -300,6 +300,9 @@ export default function Capysweeper() {
         }
 
         bombCount++;
+      }
+      else{
+        i--;
       }
     }
 
