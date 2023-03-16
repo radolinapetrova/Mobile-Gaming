@@ -23,12 +23,12 @@ const Home = () => {
       </div>
       <div className="home-buttons">
         <button type="button" className="button"> <Link to={"/levels"} className="link">START GAME</Link></button>
-        <button type="button" className="button">LEADERBOARD</button>
+        <button type="button" className="button"> <Link to={"/leaderboard"} className="link">LEADERBOARD</Link></button>
         <button type="button" className="button">WEEKLY MISSIONS</button>
       </div>
       <div className="home-side-buttons">
         <button type="button" className="button side-btn"><Link to={"/settings"} className="link"><FontAwesomeIcon icon="fa-solid fa-gear" /> </Link></button>
-        <button type="button" className="button side-btn">i  </button>
+        <button type="button" className="button side-btn"><Link to={"/instructions"} className="link">i </Link> </button>
       </div>
     </div>
 

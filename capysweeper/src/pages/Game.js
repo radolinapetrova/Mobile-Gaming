@@ -1,8 +1,9 @@
 import React from "react";
+import Capysweeper from "../Capysweeper"
 
 export default function Game (){
         return (
-            <h1 color="black">Game</h1>
+            <Capysweeper/>
         )
 }
 

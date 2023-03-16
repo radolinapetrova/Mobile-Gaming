@@ -6,6 +6,7 @@ import Leaderboard from "./Leaderboard";
 import Home from "./Home";
 import Game from "./Game";
 import Win from "./Win";
+import Instructions from "./Instructions";
 
 export default function Navigation() {
   return (
@@ -17,6 +18,7 @@ export default function Navigation() {
           <Route path="settings" element={<Settings />} />
           <Route path="levels" element={<Levels />} />
           <Route path="win" element={<Win />} />
+          <Route path="instructions" element={<Instructions />} />
           <Route />
         </Route>
       </Routes>

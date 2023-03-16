@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import Win from './pages/Win';
 import Lose from './pages/Lose'
+import Instructions from "./pages/Instructions";
+import Missions from "./pages/Missions";
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
           <Route path="win" element={<Win />} />
           <Route path="win" element={<Win />} />
           <Route path="lose" element={<Lose />} />
+          <Route path="instructions" element={<Instructions />} />
+          <Route path="missions" element={<Missions />} />
           <Route />
       </Routes>
     </BrowserRouter>

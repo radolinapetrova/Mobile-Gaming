@@ -1,0 +1,40 @@
+.instructions-cont {
+    width: 20rem;
+    height: 23rem;
+    background-color: rgba(217, 217, 217, 0.56);
+    border-radius: 30px;
+    margin-top: 2.5rem;
+    padding-top: 0.5rem;
+}
+
+.instructions-title {
+    width: 20rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.instructions-rules {
+    width: 20rem;
+    height: 10rem;
+    display: grid;
+}
+
+.rules-title {
+    margin-left: 1rem;
+    margin-top: 0rem;
+}
+
+.rules-cont {
+    width: 20rem;
+    height: 10rem;
+    margin-top: -0.5rem;
+}
+
+.tips-title {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}

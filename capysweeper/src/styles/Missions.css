@@ -1,0 +1,54 @@
+.missions-container {
+  height: 40rem;
+  width: 20rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.missions-cont {
+  width: 20rem;
+  height: 23rem;
+  background-color: rgba(217, 217, 217, 0.56);
+  border-radius: 30px;
+  margin-top: 2.5rem;
+  padding-top: 0.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.missions-cont::-webkit-scrollbar {
+  display: none;
+}
+
+.msCard {
+  width: 18rem;
+  height: 3.5rem;
+  background-color: #ffffff89;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  display: flex;
+}
+
+.msStatus {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  color: pink;
+  -webkit-text-stroke: 1px black;
+}
+
+
+.msTask {
+  height: 3.5rem;
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+
+
