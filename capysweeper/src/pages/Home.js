@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div className="home-cont">
       <div className="home-title">
-        <img src={title} className="titlePic" alt="" />
+        <img src={title} className="titlePic1" alt="" />
       </div>
       <div className="home-capy">
         <img src={capy} className="capy-home-pic" alt="" />

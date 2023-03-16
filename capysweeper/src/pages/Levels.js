@@ -17,7 +17,7 @@ const Levels = () => {
       <div className="levels-cont">
         <div className="levels-title">LEVEL SELECT</div>
         <div className="levels">
-          <div className="level lv1"><div className="level-inside">1</div><div className="level-time">01:29</div></div>
+          <div className="level lv1"><Link to={"/game"} className="link"><div className="level-inside">1</div></Link><div className="level-time">01:29</div></div>
           <div className="level lv2"><div className="level-inside"><AiOutlineLock style={{color: "black"}}/></div><div className="level-time"></div></div>
           <div className="level lv3"><div className="level-inside"><AiOutlineLock style={{color: "black"}}/></div><div className="level-time"></div></div>
           <div className="level lv4"><div className="level-inside"><AiOutlineLock style={{color: "black"}}/></div><div className="level-time"></div></div>
