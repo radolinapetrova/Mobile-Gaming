@@ -15,7 +15,7 @@ export default function Lose() {
             </div>
             <div className="lose-cont">
                 <p className="lose-info">LEVEL FAILED</p>
-                    <button type="button" className="button lose-next-level-btn">NEXT LEVEL</button>
+                <button type="button" className="button lose-next-level-btn"><Link to={"/game"} className="link">RETRY LEVEL</Link></button>
                     <button type="button" className="button go-home-btn"> <Link to={"/"} className="link"> GO HOME</Link></button>
             </div>
             <div className="lose-capy-cont">

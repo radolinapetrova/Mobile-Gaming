@@ -1,13 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Game.css";
+import { BsFillHeartFill } from "react-icons/bs"
+import title from "./resources/images/title-dark.png"
+import { BiArrowBack } from 'react-icons/bi'
+import { FiSettings } from 'react-icons/fi'
+import { Link } from "react-router-dom";
 
 export default function Capysweeper() {
   const gridSize = 10;
-  const bombsCount = 20;
+  const bombsCount = 15;
   const bombSymbol = "x";
   const [currentBombCount, setCurrentBombCount] = useState(0);
-  const [row, setRow] = useState(null);
-  const [column, setColumn] = useState(null);
+  const [flaggerOn, setFlaggerOn] = useState(false);
+  const [pauseOn, setPauseOn] = useState(false);
+  const [lives, setLives] = useState(3);
+  const [lostGame, setLostGame] = useState(false);
+  const [wonGame, setWonGame] = useState(false);
+  const [openCells, setOpenCells] = useState(0);
+
+  const [seconds, setSeconds] = useState(0)
+
+  const startTimer = () => {
+    console.log(pauseOn)
+    console.log("pauseOn")
+
+    setInterval(() => {
+      setSeconds(seconds => seconds + 1)
+    }, 1000)
+  }
+
+
+
+  useEffect(() => {
+    window.addEventListener('devicemotion', handleMotion);
+    return () => {
+      window.removeEventListener('devicemotion', handleMotion);
+    };
+  }, [])
+
+  const handleMotion = (event) => {
+    event.preventDefault()
+    setGrid(Array.from({ length: gridSize }, () =>
+      Array.from({ length: gridSize }, generateEmptyCell)
+    ))
+    setOpenCells(0)
+    setCurrentBombCount(0)
+    setLives(3)
+    setSeconds(0)
+  }
+
 
   function generateEmptyCell() {
     return {
@@ -44,6 +85,8 @@ export default function Capysweeper() {
     if (column > 0 && !arr[row][column - 1].opened) {
       arr[row][column - 1].visible = arr[row][column - 1].content !== 0;
       arr[row][column - 1].opened = true;
+      arr[row][column - 1].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row][column - 1].content === 0) {
         revealCell(arr, row, column - 1);
       }
@@ -52,6 +95,8 @@ export default function Capysweeper() {
     if (row > 0 && column > 0 && !arr[row - 1][column - 1].opened) {
       arr[row - 1][column - 1].visible = arr[row - 1][column - 1].content !== 0;
       arr[row - 1][column - 1].opened = true;
+      arr[row - 1][column - 1].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row - 1][column - 1].content === 0) {
         revealCell(arr, row - 1, column - 1);
       }
@@ -64,6 +109,8 @@ export default function Capysweeper() {
     ) {
       arr[row + 1][column - 1].visible = arr[row + 1][column - 1].content !== 0;
       arr[row + 1][column - 1].opened = true;
+      arr[row + 1][column - 1].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row + 1][column - 1].content === 0) {
         revealCell(arr, row + 1, column - 1);
       }
@@ -74,6 +121,8 @@ export default function Capysweeper() {
       console.log(column);
       arr[row + 1][column].visible = arr[row + 1][column].content !== 0;
       arr[row + 1][column].opened = true;
+      arr[row + 1][column].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row + 1][column].content === 0) {
         revealCell(arr, row + 1, column);
       }
@@ -82,6 +131,8 @@ export default function Capysweeper() {
     if (row > 0 && !arr[row - 1][column].opened) {
       arr[row - 1][column].visible = arr[row - 1][column].content !== 0;
       arr[row - 1][column].opened = true;
+      arr[row - 1][column].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row - 1][column].content === 0) {
         revealCell(arr, row - 1, column);
       }
@@ -94,6 +145,8 @@ export default function Capysweeper() {
     ) {
       arr[row - 1][column + 1].visible = arr[row - 1][column + 1].content !== 0;
       arr[row - 1][column + 1].opened = true;
+      arr[row - 1][column + 1].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row - 1][column + 1].content === 0) {
         revealCell(arr, row - 1, column + 1);
       }
@@ -106,6 +159,8 @@ export default function Capysweeper() {
     ) {
       arr[row + 1][column + 1].visible = arr[row + 1][column + 1].content !== 0;
       arr[row + 1][column + 1].opened = true;
+      arr[row + 1][column + 1].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row + 1][column + 1].content === 0) {
         revealCell(arr, row + 1, column + 1);
       }
@@ -114,6 +169,8 @@ export default function Capysweeper() {
     if (column < arr.length - 1 && !arr[row][column + 1].opened) {
       arr[row][column + 1].visible = arr[row][column + 1].content !== 0;
       arr[row][column + 1].opened = true;
+      arr[row][column + 1].flagged = false;
+      setOpenCells(openCells => openCells + 1)
       if (arr[row][column + 1].content === 0) {
         revealCell(arr, row, column + 1);
       }
@@ -122,49 +179,85 @@ export default function Capysweeper() {
 
   function handleClick(arr, row, column) {
     let newGrid;
-    if (currentBombCount < bombsCount) {
-      newGrid = generateBombs(arr, row, column);
-      newGrid[row][column].visible = newGrid[row][column].content !== 0;
-      newGrid[row][column].opened = true;
 
-      console.log(newGrid[row][column].content === 0);
-      if (newGrid[row][column].content === 0) {
-        revealCell(newGrid, row, column);
-      }
+    if (!flaggerOn) {
+      if (currentBombCount < bombsCount && arr[row][column].flagged != true) {
+        startTimer();
+        newGrid = generateBombs(arr, row, column);
+        newGrid[row][column].visible = newGrid[row][column].content !== 0;
+        newGrid[row][column].opened = true;
+        setOpenCells(openCells => openCells + 1)
 
-      setGrid(newGrid);
-      setCurrentBombCount(bombsCount);
-    } else {
-      newGrid = [...arr];
-      if (
-        newGrid[row][column].opened != true &&
-        newGrid[row][column].flagged != true
-      ) {
-        if (
-          newGrid[row][column].content === bombSymbol &&
-          newGrid[row][column].flagged === false
-        ) {
-          newGrid[row][column].opened = true;
-          console.log("bombb");
-          console.log("heheh");
-        } else {
-          console.log(row);
-          console.log(column);
-          newGrid[row][column].visible = newGrid[row][column].content !== 0;
-          newGrid[row][column].opened = true;
-
-          console.log(newGrid[row][column].content === 0);
-          if (newGrid[row][column].content === 0) {
-            revealCell(newGrid, row, column);
-          }
-          console.log("heheh");
+        console.log(newGrid[row][column].content === 0);
+        if (newGrid[row][column].content === 0) {
+          revealCell(newGrid, row, column);
         }
 
         setGrid(newGrid);
+        setCurrentBombCount(bombsCount);
+      } else {
+        newGrid = [...arr];
+        if (
+          newGrid[row][column].opened != true &&
+          newGrid[row][column].flagged != true
+        ) {
+          if (
+            newGrid[row][column].content === bombSymbol &&
+            newGrid[row][column].flagged === false) {
+            newGrid[row][column].opened = true;
+            if (lives - 1 > 0) {
+              setLives(lives - 1);
+              navigator.vibrate(100)
+            }
+            else {
+              setLostGame(true)
+            }
 
-        console.log(arr);
+            console.log("bombb");
+            console.log("heheh");
+          } else {
+            console.log(row);
+            console.log(column);
+            newGrid[row][column].visible = newGrid[row][column].content !== 0;
+            newGrid[row][column].opened = true;
+            setOpenCells(openCells => openCells + 1)
+
+
+            console.log(newGrid[row][column].content === 0);
+            if (newGrid[row][column].content === 0) {
+              revealCell(newGrid, row, column);
+            }
+            console.log("heheh");
+          }
+
+          setGrid(newGrid);
+
+
+          console.log(arr);
+        }
       }
     }
+    else {
+
+      newGrid = [...arr];
+
+
+      if (!newGrid[row][column].opened) {
+        newGrid[row][column].flagged = !newGrid[row][column].flagged;
+
+      }
+
+      setGrid(newGrid)
+      console.log(arr[row][column])
+
+    }
+
+    console.log(openCells)
+    console.log("openCells")
+    if (openCells === gridSize * gridSize - bombsCount) {
+      setWonGame(true)
+    }
+
   }
 
   function generateBombs(arr, row, column) {
@@ -229,34 +322,70 @@ export default function Capysweeper() {
 
 
   function generateGrid(arr) {
-    console.log(row);
-    console.log(column);
-    return (
-      <div className="grid">
-        {arr.map((row, rowIndex) => (
-          <div className="row" key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <div
-                onClick={() => {
-                  handleClick(arr, rowIndex, cellIndex);
-                }}
-                key={`${rowIndex}-${cellIndex}`}
-                className={`cell${cell.opened ? " opened" : ""}${
-                  lightOrDark(rowIndex, cellIndex) ? " light" : " dark"
-                } content${cell.content}`}
-                id={`${
-                  cell.content === bombSymbol && cell.opened === true
-                    ? "boom"
-                    : ""
-                }`}
-              >
-                {cell.visible ? cell.content : ""}
+
+    if (lostGame) {
+      setTimeout(() => {
+        // Navigate to the Lose component
+        window.location.href = '/Lose';
+      }, 1000);
+    }
+    else if (wonGame) {
+      setTimeout(() => {
+        // Navigate to the Lose component
+        window.location.href = '/Win';
+      }, 1000);
+    }
+    else {
+      return (
+        <div className="game">
+          <div className="settings">
+            <img src={title} className="titlePic" alt="" />
+          </div>
+          <div className="gameSettings">
+            {/* <div className="pause" ></div> */}
+            <div className={`${flaggerOn ? "flagger " : "flaggerOff "}`} onClick={(e) => (setFlaggerOn(!flaggerOn))}>
+
+            </div>
+            <div className="timer">
+              {Math.trunc(seconds / 60) < 10 ? `0${Math.trunc(seconds / 60)}` : Math.trunc(seconds / 60)}:{seconds % 60 < 10 ? `0${seconds % 60}` : seconds % 60}
+            </div>
+            <div className="lives">
+              <div className="live live3"><BsFillHeartFill color={lives >= 1 ? "red" : ""} /></div>
+              <div className="live live2"><BsFillHeartFill color={lives >= 2 ? "red" : ""} /></div>
+              <div className="live live1"><BsFillHeartFill color={lives >= 3 ? "red" : ""} /></div>
+            </div>
+          </div>
+          <div className="grid">
+            {arr.map((row, rowIndex) => (
+              <div className="row" key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                  <div
+                    onClick={() => {
+                      handleClick(arr, rowIndex, cellIndex);
+                    }}
+                    key={`${rowIndex}-${cellIndex}`}
+                    className={`cell${cell.opened ? " opened" : ""}${lightOrDark(rowIndex, cellIndex) ? " light" : " dark"
+                      } content${cell.content} ${cell.flagged ? "flagged" : ""}`}
+                    id={`${cell.content === bombSymbol && cell.opened === true
+                      ? "boom"
+                      : ""
+                      }`}
+                  >
+                    {cell.visible ? cell.content : ""}
+                  </div>
+                ))}
               </div>
             ))}
           </div>
-        ))}
-      </div>
-    );
+          <div className="other-option-btns">
+            <button type="button" className="levels-bottom-btn"><Link to={"/"} className="link"><BiArrowBack size="1.5rem" /> </Link></button>
+            {/* <button type="button" className="levels-bottom-btn1"><Link to={"/settings"} className="link"> <FiSettings size="1.5rem" /> </Link> </button> */}
+
+          </div>
+        </div>
+      );
+    }
+
   }
 
   return <div>{generateGrid(grid)}</div>;

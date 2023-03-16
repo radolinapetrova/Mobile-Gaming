@@ -14,7 +14,7 @@ const Settings = () => {
     const handleMusicOff = (event) => {
         setIsMusicOff(event.target.checked);
         if (event.target.checked) {
-            // Play audio when music is turned off
+            
             const newAudio = new Audio(audioSrc);
             newAudio.play();
             setAudio(newAudio);
